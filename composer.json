@@ -1,0 +1,25 @@
+{
+    "name":         "essentialdots/weasel",
+    "description":  "Various add-ons for Behat/Mink",
+    "keywords":     ["BDD", "Behat", "Mink", "Context"],
+    "type":         "library",
+	"homepage": "http://www.essentialdots.com",
+	"license": "GPL",
+	"authors": [
+		{
+			"name": "Essential Dots d.o.o. Belgrade"
+		}
+	],
+
+	"require": {
+		"php":          ">=5.3.2",
+		"behat/behat":  ">=2.4.0,<2.5.0-dev",
+		"behat/mink":   ">=1.4.0,<1.5.0-dev"
+	},
+
+    "autoload": {
+        "psr-0": {
+            "EssentialDots\\Weasel": "src/"
+        }
+    }
+}

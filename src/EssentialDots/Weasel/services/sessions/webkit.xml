@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+		<parameter key="behat.mink.driver.webkit.class">EssentialDots\Mink\Driver\WebkitDriver</parameter>
+		<parameter key="behat.mink.driver.webkit.browser.class">EssentialDots\Mink\Driver\Webkit\Browser</parameter>
+		<parameter key="behat.mink.webkit.bin_path">/usr/lib/ruby/gems/1.8/gems/capybara-webkit-0.14.1/bin/webkit_server</parameter>
+		<parameter key="behat.mink.webkit.ignore_ssl_errors">false</parameter>
+    </parameters>
+
+    <services>
+        <service id="behat.mink.session.webkit" class="%behat.mink.session.class%">
+            <argument type="service">
+                <service class="%behat.mink.driver.webkit.class%">
+					<argument type="service" id="behat.mink.session.webkit.bin_path" />
+                </service>
+            </argument>
+            <argument type="service" id="behat.mink.selector.handler" />
+            <tag name="behat.mink.session" alias="webkit" />
+        </service>
+
+		<service id="behat.mink.session.webkit.bin_path" class="%behat.mink.driver.webkit.browser.class%">
+			<argument>%behat.mink.webkit.bin_path%</argument>
+			<argument>%behat.mink.webkit.ignore_ssl_errors%</argument>
+		</service>
+    </services>
+</container>
