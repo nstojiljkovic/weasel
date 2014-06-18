@@ -50,21 +50,10 @@ class Extension extends \Behat\MinkExtension\Extension {
 
 		$loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/services'));
 		if (isset($config['webkit'])) {
-			if (false && !class_exists('EssentialDots\\Mink\\Driver\\WebkitDriver')) {
-				$webkitDriverFolder = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/mink-capybara-webkit-driver/src/EssentialDots/Mink/Driver';
-				if (file_exists($webkitDriverFolder . '/WebkitDriver.php') && is_file($webkitDriverFolder . '/WebkitDriver.php') &&
-					file_exists($webkitDriverFolder . '/Webkit/Browser.php') && is_file($webkitDriverFolder . '/Webkit/Browser.php')
-				) {
-					//
-					// enable usage of driver before this gets public
-					//
-					require_once($webkitDriverFolder . '/WebkitDriver.php');
-					require_once($webkitDriverFolder . '/Webkit/Browser.php');
-				} else {
-					throw new \RuntimeException(
-						'Install Capybara Webkit Driver in order to activate webkit session.'
-					);
-				}
+			if (!class_exists('EssentialDots\\Mink\\Driver\\WebkitDriver')) {
+				throw new \RuntimeException(
+					'Install Capybara Webkit Driver in order to activate webkit session.'
+				);
 			}
 
 			$loader->load('sessions/webkit.xml');
